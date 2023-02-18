@@ -1,0 +1,22 @@
+{
+  "name": "team_profiles",
+  "version": "1.0.0",
+  "description": "inquirer package",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KarimB101/Team_Profiles.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KarimB101/Team_Profiles/issues"
+  },
+  "homepage": "https://github.com/KarimB101/Team_Profiles#readme",
+  "dependencies": {
+    "inquirer": "^8.2.4"
+  }
+}
