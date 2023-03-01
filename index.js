@@ -15,105 +15,98 @@ const generateHTML = require("./src/generateHTML");
 const { type } = require('os');
 const { default: Choices } = require('inquirer/lib/objects/choices');
 
+
+
 // validate questions to be asked for input from user
 const addRole = () => {
-    return (
-        inquirer.createPromptModule([
+        inquirer.prompt([
             {
-                name: "Employee-Status",
+                name: "employeeStatus",
                 type: "list",
-                message: "Please confirm Employee status you would like to fill out info for.",
-                choices: ["Employee", "Intern", "Manager", "Engineer"],
+                message: "Please confirm which role you would like to fill out or finish creating team",
+                choices: ["Finish Building Team", "Intern", "Engineer"],
             },
-
         ])
-    )
+        .then((answers) => {
+            console.log(answers)
+            if (answers.employeeStatus === "Engineer") {
+                addEngineer();
+            } else if (answers.employeeStatus === "Intern") {
+                addIntern();
+            } else {
+                createTeamPage();
+            }
+            // Use user feedback for... whatever!!
+        })
+        .catch((error) => {
+            if (error.isTtyError) {
+                // Prompt couldn't be rendered in the current environment
+            } else {
+                // Something else went wrong
+            }
+        });
 };
+
 
 // function to prompt user through employee questions
-const addEmployee = () => {
-    return (
-        inquirer
-            .createPromptModule([
-                {
-                    name: "name",
-                    type: "input",
-                    message: "What is the Employee's name?",
-                    validate: (name) => {
-                        if (name) { return true; }
-                        else { return false; }
-                    },
-                },
-                {
-                    name: "id",
-                    type: "input",
-                    message: "What is the Employee's Id?",
-                    validate: (id) => {
-                        if (id) { return true; }
-                        else { return false; }
-                    },
-                },
-                {
-                    name: "email",
-                    type: "input",
-                    message: "What is the Employee's email?",
-                    validate: (email) => {
-                        if (email) { return true; }
-                        else { return false; }
-                    },
-                }
-            ])
-
-    )
-};
 const addManager = () => {
-    return (
-        inquirer
-            .createPromptModule([
-                {
-                    name: "name",
-                    type: "input",
-                    message: "What is the Manager's name?",
-                    validate: (name) => {
-                        if (name) { return true; }
-                        else { return false; }
-                    },
+    inquirer
+        .prompt([
+            {
+                name: "name",
+                type: "input",
+                message: "What is the Manager's name?",
+                validate: (name) => {
+                    if (name) { return true; }
+                    else { return false; }
                 },
-                {
-                    name: "id",
-                    type: "input",
-                    message: "What is the Manager's Id?",
-                    validate: (id) => {
-                        if (id) { return true; }
-                        else { return false; }
-                    },
+            },
+            {
+                name: "id",
+                type: "input",
+                message: "What is the Manager's Id?",
+                validate: (id) => {
+                    if (id) { return true; }
+                    else { return false; }
                 },
-                {
-                    name: "email",
-                    type: "input",
-                    message: "What is the Manager's email?",
-                    validate: (email) => {
-                        if (email) { return true; }
-                        else { return false; }
-                    },
+            },
+            {
+                name: "email",
+                type: "input",
+                message: "What is the Manager's email?",
+                validate: (email) => {
+                    if (email) { return true; }
+                    else { return false; }
                 },
-                {
-                    name: "Office Number",
-                    type: "input",
-                    message: "What is the Manager's Office Number?",
-                    validate: (officeNumber) => {
-                        if (officeNumber) { return true; }
-                        else { return false; }
-                    },
+            },
+            {
+                name: "officeNumber",
+                type: "input",
+                message: "What is the Manager's Office Number?",
+                validate: (officeNumber) => {
+                    if (officeNumber) { return true; }
+                    else { return false; }
                 },
-            ])
+            },
+        ])
+        .then((answers) => {
+            console.log(answers)
+            addRole()
+            // Use user feedback for... whatever!!
+        })
+        .catch((error) => {
+            if (error.isTtyError) {
+                // Prompt couldn't be rendered in the current environment
+            } else {
+                // Something else went wrong
+            }
+        });
 
-    )
+
 };
 const addEngineer = () => {
-    return (
         inquirer
-            .createPromptModule([
+            .prompt([
                 {
                     name: "name",
                     type: "input",
@@ -142,7 +135,7 @@ const addEngineer = () => {
                     },
                 },
                 {
-                    name: "Github Username",
+                    name: "Github",
                     type: "input",
                     message: "What is the Engineer's Github username?",
                     validate: (Github) => {
@@ -151,13 +144,23 @@ const addEngineer = () => {
                     },
                 },
             ])
+            .then((answers) => {
+                console.log(answers)
+                // Use user feedback for... whatever!!
+            })
+            .catch((error) => {
+                if (error.isTtyError) {
+                    // Prompt couldn't be rendered in the current environment
+                } else {
+                    // Something else went wrong
+                }
+            });
 
-    )
+    
 };
 const addIntern = () => {
-    return (
         inquirer
-            .createPromptModule([
+            .prompt([
                 {
                     name: "name",
                     type: "input",
@@ -186,7 +189,7 @@ const addIntern = () => {
                     },
                 },
                 {
-                    name: "School",
+                    name: "school",
                     type: "input",
                     message: "What is the Intern's school?",
                     validate: (school) => {
@@ -195,8 +198,17 @@ const addIntern = () => {
                     },
                 },
             ])
-
-    )
+            .then((answers) => {
+                console.log(answers)
+                // Use user feedback for... whatever!!
+            })
+            .catch((error) => {
+                if (error.isTtyError) {
+                    // Prompt couldn't be rendered in the current environment
+                } else {
+                    // Something else went wrong
+                }
+            });
 };
 
 
@@ -208,3 +220,5 @@ function createTeamPage() {
         console.log("Profiles created!");
     });
 };
+
+addManager();
