@@ -224,12 +224,16 @@ const addIntern = () => {
 };
 
 // function to import and generate html file with data
+  
                 const createTeamPage = () => {
                     if (!fs.existsSync(DIST_DIR)) {
                         fs.mkdirSync(DIST_DIR);
                       }
                       fs.writeFileSync(distPath, render(teamMembers), 'utf-8');
-                };
+                function writeToFile(fileName, data) {
+    return fs.writeFileSync(path.join(process.cwd(), fileName), data);
+  }
+};
                 // function createTeamPage() {
                 //     const dom = generateHTML();
                 //     fs.writeFile("team.html", dom, function (err) {
