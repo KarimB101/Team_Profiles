@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/KarimB101/Team_Profiles#readme",
   "dependencies": {
+    "fs": "^0.0.1-security",
     "inquirer": "^8.2.4",
     "jest": "^29.4.3"
   }

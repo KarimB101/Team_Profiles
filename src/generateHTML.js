@@ -1,80 +1,114 @@
-// create the team
-const generateTeam = team => {
+// const inquirer = require("inquirer");
 
-    // create the manager html
-    const generateManager = manager => {
-        return `
-        <div class="card employee-card">
-        <div class="card-header">
-            <h2 class="card-title">${manager.getName()}</h2>
-            <h3 class="card-title"><i class="fas fa-mug-hot mr-2"></i>${manager.getRole()}</h3>
-        </div>
-        <div class="card-body">
-            <ul class="list-group">
-                <li class="list-group-item">ID: ${manager.getId()}</li>
-                <li class="list-group-item">Email: <a href="mailto:${manager.getEmail()}">${manager.getEmail()}</a></li>
-                <li class="list-group-item">Office number: ${manager.getOfficeNumber()}</li>
-            </ul>
-        </div>
-    </div>
-        `;
-    };
 
-    // create the html for engineers
-    const generateEngineer = engineer => {
-        return `
-        <div class="card employee-card">
-    <div class="card-header">
-        <h2 class="card-title">${engineer.getName()}</h2>
-        <h3 class="card-title"><i class="fas fa-glasses mr-2"></i>${engineer.getRole()}</h3>
-    </div>
-    <div class="card-body">
-        <ul class="list-group">
-            <li class="list-group-item">ID: ${engineer.getId()}</li>
-            <li class="list-group-item">Email: <a href="mailto:${engineer.getEmail()}">${engineer.getEmail()}</a></li>
-            <li class="list-group-item">GitHub: <a href="https://github.com/${engineer.getGithub()}" target="_blank" rel="noopener noreferrer">${engineer.getGithub()}</a></li>
-        </ul>
-    </div>
+const createManagerCard = (manager) => {
+    return `
+<div class="employee-card manager-card">
+    <h3>${manager.name}</h3>
+    <p>Manager</p>
+    <p>${manager.id}</p>
+    <p>${manager.email}</p>
+    <p>${manager.officeNumber}</p>
 </div>
-        `;
-    };
-
-    // create the html for interns
-    const generateIntern = intern => {
-        return `
-        <div class="card employee-card">
-    <div class="card-header">
-        <h2 class="card-title">${intern.getName()}</h2>
-        <h3 class="card-title"><i class="fas fa-user-graduate mr-2"></i>${intern.getRole()}</h3>
-    </div>
-    <div class="card-body">
-        <ul class="list-group">
-            <li class="list-group-item">ID: ${intern.getId()}</li>
-            <li class="list-group-item">Email: <a href="mailto:${intern.getEmail()}">${intern.getEmail()}</a></li>
-            <li class="list-group-item">School: ${intern.getSchool()}</li>
-        </ul>
-    </div>
-</div>
-        `;
-    };
-
-    const html = [];
-
-    html.push(team
-        .filter(employee => employee.getRole() === "Manager")
-        .map(manager => generateManager(manager))
-    );
-    html.push(team
-        .filter(employee => employee.getRole() === "Engineer")
-        .map(engineer => generateEngineer(engineer))
-        .join("")
-    );
-    html.push(team
-        .filter(employee => employee.getRole() === "Intern")
-        .map(intern => generateIntern(intern))
-        .join("")
-    );
-
-    return html.join("");
-
+`;
 };
+
+const createEngineerCard = (engineer) => {
+    return `
+<div class="employee-card engineer-card">
+    <h3>${engineer.name}</h3>
+    <p>Engineer</p>
+    <p>${engineer.id}</p>
+    <p>${engineer.email}</p>
+    <p>${engineer.github}</p>
+</div>
+`;
+};
+
+const createInternCard = (intern) => {
+    return `
+<div class="employee-card intern-card">
+    <h3>${intern.name}</h3>
+    <p>Intern</p>
+    <p>${intern.id}</p>
+    <p>${intern.email}</p>
+    <p>${intern.school}</p>
+</div>
+`;
+};
+
+const generateTeam = (team) => {
+    const managerCards = team.filter(employee => employee.role === "Manager").map(createManagerCard).join('');
+    const engineerCards = team.filter(employee => employee.role === "Engineer").map(createEngineerCard).join('');
+    const internCards = team.filter(employee => employee.role === "Intern").map(createInternCard).join('');
+
+    return `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Profile</title>
+    <!-- Add any required CSS here -->
+</head>
+<body>
+    <header>
+        <h1>Team Profile</h1>
+    </header>
+    <main>
+        <div class="team-container">
+            ${managerCards}
+            ${engineerCards}
+            ${internCards}
+        </div>
+    </main>
+</body>
+</html>
+`;
+};
+
+module.exports = generateTeam;
+
+
+// const createEmployeeCard = (employee) => {
+//     return `
+// <div class="employee-card">
+//     <h3>${employee.name}</h3>
+//     <p>${employee.role}</p>
+//     <p>${employee.id}</p>
+//     <p>${employee.email}</p>
+//     ${employee.role === 'Intern' ? `<p>${employee.school}</p>` : ''}
+//     ${employee.role === 'Engineer' ? `<p>${employee.Github}</p>` : ''}
+// </div>
+// `;
+// };
+
+// const generateHTML = (team) => {
+//     return `
+// <!DOCTYPE html>
+// <html lang="en">
+// <head>
+//     <meta charset="UTF-8">
+//     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+//     <title>Team Profile</title>
+//     <!-- Add any required CSS here -->
+// </head>
+// <body>
+//     <header>
+//         <h1>Manager</h1>
+//     </header>
+//     <main>
+//         <div class="team-container">
+//             ${team.map(createEmployeeCard).join('')}
+//         </div>
+//     </main>
+// </body>
+// </html>
+// `;
+// };
+
+// module.exports = generateHTML;
+
+
+
+
