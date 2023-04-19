@@ -6,9 +6,9 @@ const createManagerCard = (manager) => {
 <div class="employee-card manager-card">
     <h2>Manager</h2>
     <h3>${manager.name}</h3>
-    <p>${manager.id}</p>
-    <p>${manager.email}</p>
-    <p>${manager.officeNumber}</p>
+    <ul>${manager.id}</ul>
+    <ul><a href="mailto:${manager.email}">${manager.email}</a></ul>
+    <ul>${manager.officeNumber}</ul>
 </div>
 `;
 };
@@ -19,7 +19,7 @@ const createEngineerCard = (engineer) => {
     <h2>Engineer</h2>
     <h3>${engineer.name}</h3>
     <p>${engineer.id}</p>
-    <p>${engineer.email}</p>
+    <p><a href="mailto:${engineer.email}">${engineer.email}</a></p>
     <p>${engineer.github}</p>
 </div>
 `;
@@ -31,7 +31,7 @@ const createInternCard = (intern) => {
     <h2>Intern</h2>
     <h3>${intern.name}</h3>
     <p>${intern.id}</p>
-    <p>${intern.email}</p>
+    <p><a href="mailto:${intern.email}">${intern.email}</a></p>
     <p>${intern.school}</p>
 </div>
 `;
@@ -70,44 +70,7 @@ const generateTeam = (team) => {
 module.exports = generateTeam;
 
 
-// const createEmployeeCard = (employee) => {
-//     return `
-// <div class="employee-card">
-//     <h3>${employee.name}</h3>
-//     <p>${employee.role}</p>
-//     <p>${employee.id}</p>
-//     <p>${employee.email}</p>
-//     ${employee.role === 'Intern' ? `<p>${employee.school}</p>` : ''}
-//     ${employee.role === 'Engineer' ? `<p>${employee.Github}</p>` : ''}
-// </div>
-// `;
-// };
 
-// const generateHTML = (team) => {
-//     return `
-// <!DOCTYPE html>
-// <html lang="en">
-// <head>
-//     <meta charset="UTF-8">
-//     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-//     <title>Team Profile</title>
-//     <!-- Add any required CSS here -->
-// </head>
-// <body>
-//     <header>
-//         <h1>Manager</h1>
-//     </header>
-//     <main>
-//         <div class="team-container">
-//             ${team.map(createEmployeeCard).join('')}
-//         </div>
-//     </main>
-// </body>
-// </html>
-// `;
-// };
-
-// module.exports = generateHTML;
 
 
 
