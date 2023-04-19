@@ -18,9 +18,9 @@ const createEngineerCard = (engineer) => {
 <div class="employee-card engineer-card">
     <h2>Engineer</h2>
     <h3>${engineer.name}</h3>
-    <p>${engineer.id}</p>
-    <p><a href="mailto:${engineer.email}">${engineer.email}</a></p>
-    <p>${engineer.github}</p>
+    <ul>${engineer.id}</ul>
+    <ul><a href="mailto:${engineer.email}">${engineer.email}</a></ul>
+    <ul>${engineer.github}</ul>
 </div>
 `;
 };
@@ -30,9 +30,9 @@ const createInternCard = (intern) => {
 <div class="employee-card intern-card">
     <h2>Intern</h2>
     <h3>${intern.name}</h3>
-    <p>${intern.id}</p>
-    <p><a href="mailto:${intern.email}">${intern.email}</a></p>
-    <p>${intern.school}</p>
+    <ul>${intern.id}</ul>
+    <ul><a href="mailto:${intern.email}">${intern.email}</a></ul>
+    <ul>${intern.school}</ul>
 </div>
 `;
 };
