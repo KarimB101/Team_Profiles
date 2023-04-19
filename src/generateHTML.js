@@ -4,8 +4,8 @@
 const createManagerCard = (manager) => {
     return `
 <div class="employee-card manager-card">
+    <h2>Manager</h2>
     <h3>${manager.name}</h3>
-    <p>Manager</p>
     <p>${manager.id}</p>
     <p>${manager.email}</p>
     <p>${manager.officeNumber}</p>
@@ -16,8 +16,8 @@ const createManagerCard = (manager) => {
 const createEngineerCard = (engineer) => {
     return `
 <div class="employee-card engineer-card">
+    <h2>Engineer</h2>
     <h3>${engineer.name}</h3>
-    <p>Engineer</p>
     <p>${engineer.id}</p>
     <p>${engineer.email}</p>
     <p>${engineer.github}</p>
@@ -28,8 +28,8 @@ const createEngineerCard = (engineer) => {
 const createInternCard = (intern) => {
     return `
 <div class="employee-card intern-card">
+    <h2>Intern</h2>
     <h3>${intern.name}</h3>
-    <p>Intern</p>
     <p>${intern.id}</p>
     <p>${intern.email}</p>
     <p>${intern.school}</p>
@@ -56,7 +56,7 @@ const generateTeam = (team) => {
         <h1>Team Profile</h1>
     </header>
     <main>
-        <div class="team-container">
+        <div class="team-container col-4">
             ${managerCards}
             ${engineerCards}
             ${internCards}
